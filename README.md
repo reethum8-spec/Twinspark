@@ -1,10 +1,10 @@
-# TwinSpark ⚡ — AI-Assisted Electronics Product Digital Twin
+# TwinSpark  — AI-Assisted Electronics Product Digital Twin
 
 **TwinSpark** is an interactive, AI-assisted electronics digital twin application for students, makers, and hardware developers. It helps model, calculate power consumption, estimate battery runtime, and visualize 3D physical layouts of battery-powered electronic devices.
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Two Starting Options**:
   - **Start Blank**: Begin with a clean slate to model custom devices from scratch.
@@ -26,7 +26,7 @@
 
 ---
 
-## 🛠️ Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -55,7 +55,7 @@
 
 ---
 
-## 🚀 Building for Production
+##  Building for Production
 
 To create an optimized production build:
 ```bash
@@ -69,7 +69,7 @@ npm run preview
 
 ---
 
-## 🧪 Tech Stack
+## Tech Stack
 
 - **Framework**: React 18 + Vite + TypeScript
 - **3D Graphics**: Three.js + OrbitControls
