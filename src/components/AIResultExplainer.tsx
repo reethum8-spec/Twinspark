@@ -59,18 +59,20 @@ export default function AIResultExplainer({ spec, metrics, onApplyOptimization }
               <strong className="text-amber-400 font-mono">{metrics.adjustedAvgCurrentmA.toFixed(3)} mA</strong> (adjusted for{' '}
               {spec.regulatorEfficiencyPercent}% regulator efficiency).
             </p>
-            <p>
-              With your <strong className="text-slate-100">{spec.battery.name}</strong> ({spec.battery.capacitymAh} mAh nominal,{' '}
-              {spec.usableCapacityPercent}% usable = <strong className="text-emerald-400 font-mono">{metrics.usableCapacitymAh} mAh</strong>),{' '}
-              the projected battery lifetime is <strong className="text-emerald-400 font-bold font-mono">{metrics.batteryLifeDays.toFixed(1)} Days</strong> ({metrics.batteryLifeHours.toFixed(0)} Hours).
-            </p>
+            {spec.battery && (
+              <p>
+                With your <strong className="text-slate-100">{spec.battery.name}</strong> ({spec.battery.capacitymAh} mAh nominal,{' '}
+                {spec.usableCapacityPercent}% usable = <strong className="text-emerald-400 font-mono">{metrics.usableCapacitymAh} mAh</strong>),{' '}
+                the projected battery lifetime is <strong className="text-emerald-400 font-bold font-mono">{metrics.batteryLifeDays.toFixed(1)} Days</strong> ({metrics.batteryLifeHours.toFixed(0)} Hours).
+              </p>
+            )}
 
             {topConsumer && (
               <div className="p-3 bg-cyan-950/40 border border-cyan-500/30 rounded-lg text-cyan-200 mt-2 flex items-start gap-2">
                 <Lightbulb className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="font-bold">Primary Power Consumer:</strong>{' '}
-                  {topConsumer.componentName} accounts for <strong className="text-amber-300">{topConsumer.percentageShare}%</strong> of total energy consumed during each 10-minute cycle.
+                  {topConsumer.componentName} accounts for <strong className="text-amber-300">{topConsumer.percentageShare}%</strong> of total energy consumed during each {(spec.cyclePeriodSec / 60).toFixed(0)}-minute cycle.
                 </div>
               </div>
             )}

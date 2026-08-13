@@ -8,7 +8,7 @@
 
 - **Two Starting Options**:
   - **Start Blank**: Begin with a clean slate to model custom devices from scratch.
-  - **Try Sample (Wi‑Fi Plant Monitor)**: Load default ESP32, DHT22, OLED 0.96", LED, Li-Ion battery, usage schedule, calculation values, and 3D layout.
+  - **Try Sample (Portable Smart Device)**: Load default ESP32, DHT22, OLED 0.96", LED, Li-Ion battery, usage schedule, calculation values, and 3D layout.
 - **Deterministic Power Calculation Engine**:
   - Calculates Average Current ($I_{\text{avg}}$), Peak Current ($I_{\text{peak}}$), Usable Battery Capacity (mAh), and Battery Life (Hours & Days).
   - Adjustable DC-DC Converter Efficiency (%) and Usable Battery Capacity (%) sliders.

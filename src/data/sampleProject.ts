@@ -1,11 +1,11 @@
 import { ProductSpec } from '../types/twinspark';
 import { COMPONENT_DATABASE } from './componentDatabase';
 
-export const SAMPLE_WIFI_PLANT_MONITOR: ProductSpec = {
-  id: 'wifi-plant-monitor-sample',
-  name: '🌱 Smart Wi-Fi Plant Monitor',
-  description: 'Battery-powered smart soil & climate monitor that reads temperature/humidity, updates an OLED screen, flashes an LED, and sends data via Wi-Fi every 10 minutes.',
-  userPrompt: 'I want to build a battery-powered smart plant monitor that sends data through Wi-Fi every 10 minutes.',
+export const SAMPLE_PORTABLE_SMART_DEVICE: ProductSpec = {
+  id: 'portable-smart-device-sample',
+  name: 'Portable Smart Device',
+  description: 'Battery-powered portable smart device that reads environmental sensors, updates an OLED screen, flashes a status LED, and sends data via Wi-Fi every 10 minutes.',
+  userPrompt: 'I want to build a battery-powered portable smart device that sends sensor data through Wi-Fi every 10 minutes.',
   controller: { ...COMPONENT_DATABASE['esp32'] },
   sensors: [{ ...COMPONENT_DATABASE['dht22'] }],
   display: { ...COMPONENT_DATABASE['oled-096'] },

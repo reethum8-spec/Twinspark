@@ -1,31 +1,45 @@
 import React, { useState } from 'react';
 import { ProductSpec } from './types/twinspark';
-import { SAMPLE_WIFI_PLANT_MONITOR } from './data/sampleProject';
+import { SAMPLE_PORTABLE_SMART_DEVICE } from './data/sampleProject';
 import { BLANK_PROJECT_SPEC } from './data/blankProject';
 import { calculateDeterministicMetrics } from './utils/calculationEngine';
+import LandingScreen from './components/LandingScreen';
 import Header from './components/Header';
 import ComponentSelector from './components/ComponentSelector';
 import TimelineDiagram from './components/TimelineDiagram';
 import DigitalTwinDashboard from './components/DigitalTwinDashboard';
 import ThreeDProductLayout from './components/ThreeDProductLayout';
 import AIResultExplainer from './components/AIResultExplainer';
-import { Sliders, Cpu, Sparkles, Download, Check, Copy, RefreshCw, PlusCircle, Play } from 'lucide-react';
+import { Sliders, Cpu, Download, Check, Copy, PlusCircle, Play } from 'lucide-react';
 
 export default function App() {
-  const [spec, setSpec] = useState<ProductSpec>(SAMPLE_WIFI_PLANT_MONITOR);
+  const [spec, setSpec] = useState<ProductSpec>(BLANK_PROJECT_SPEC);
   const [selectedComponentId, setSelectedComponentId] = useState<string | undefined>(undefined);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showEditor, setShowEditor] = useState(false);
 
   // Real-time deterministic power calculation engine
   const metrics = calculateDeterministicMetrics(spec);
 
   const handleStartBlank = () => {
     setSpec(JSON.parse(JSON.stringify(BLANK_PROJECT_SPEC)));
+    setShowEditor(true);
   };
 
   const handleLoadSample = () => {
-    setSpec(JSON.parse(JSON.stringify(SAMPLE_WIFI_PLANT_MONITOR)));
+    setSpec(JSON.parse(JSON.stringify(SAMPLE_PORTABLE_SMART_DEVICE)));
+    setShowEditor(true);
+  };
+
+  const handleGenerateDesign = (prompt: string, _imageDataUrl?: string) => {
+    const customSpec: ProductSpec = JSON.parse(JSON.stringify(SAMPLE_PORTABLE_SMART_DEVICE));
+    customSpec.id = `custom-${Date.now()}`;
+    customSpec.name = prompt.length > 40 ? prompt.slice(0, 40) + '...' : prompt;
+    customSpec.description = `Generated digital twin spec for "${prompt}"`;
+    customSpec.userPrompt = prompt;
+    setSpec(customSpec);
+    setShowEditor(true);
   };
 
   const handleCopyExport = () => {
@@ -34,6 +48,18 @@ export default function App() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // ─── Landing Screen ─────────────────────────────────────────────────
+  if (!showEditor) {
+    return (
+      <LandingScreen
+        onGenerateDesign={handleGenerateDesign}
+        onLoadSample={handleLoadSample}
+        onStartBlank={handleStartBlank}
+      />
+    );
+  }
+
+  // ─── Editor ─────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
       {/* Header Navigation with Starting Options */}
@@ -94,6 +120,7 @@ export default function App() {
                 spec={spec}
                 onUpdateSpec={setSpec}
                 selectedComponentId={selectedComponentId}
+                onSelectComponent={setSelectedComponentId}
               />
             </div>
           </div>

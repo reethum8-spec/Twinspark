@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, Sparkles, Sliders, Download, Play, PlusCircle, Save, Folder, Trash2, Edit3, Layers } from 'lucide-react';
 import { ProductSpec, SavedProjectVersion } from '../types/twinspark';
-import { SAMPLE_WIFI_PLANT_MONITOR } from '../data/sampleProject';
+import { SAMPLE_PORTABLE_SMART_DEVICE } from '../data/sampleProject';
 import { BLANK_PROJECT_SPEC } from '../data/blankProject';
 import { getSavedVersions, saveProjectVersion, deleteProjectVersion } from '../services/projectStorage';
 
@@ -28,7 +28,7 @@ export default function Header({ spec, onUpdateSpec, onStartBlank, onLoadSample,
     e.preventDefault();
     if (!promptInput.trim()) return;
     
-    const customSpec: ProductSpec = JSON.parse(JSON.stringify(SAMPLE_WIFI_PLANT_MONITOR));
+    const customSpec: ProductSpec = JSON.parse(JSON.stringify(SAMPLE_PORTABLE_SMART_DEVICE));
     customSpec.id = `custom-${Date.now()}`;
     customSpec.name = `✨ Custom: ${promptInput.slice(0, 32)}...`;
     customSpec.description = `Generated digital twin spec for "${promptInput}"`;
@@ -83,7 +83,7 @@ export default function Header({ spec, onUpdateSpec, onStartBlank, onLoadSample,
           <div className="relative flex items-center">
             <input
               type="text"
-              placeholder="Describe your product idea (e.g. 'Battery plant monitor sending Wi-Fi every 10m')..."
+              placeholder="Describe your product idea (e.g. 'Battery-powered GPS tracker with BLE')..."
               value={promptInput}
               onChange={(e) => setPromptInput(e.target.value)}
               className="w-full bg-slate-900 border border-slate-700/80 focus:border-cyan-400 rounded-xl py-2 pl-3.5 pr-28 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
@@ -114,10 +114,10 @@ export default function Header({ spec, onUpdateSpec, onStartBlank, onLoadSample,
           <button
             onClick={onLoadSample}
             className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 text-xs font-extrabold flex items-center gap-1.5 shadow-lg shadow-emerald-500/25 active:scale-95 transition-all"
-            title="Load default Wi-Fi Plant Monitor sample template"
+            title="Load default Portable Smart Device sample template"
           >
             <Play className="w-4 h-4 fill-slate-950" />
-            <span>Try sample: Wi‑Fi Plant Monitor</span>
+            <span>Try sample: Portable Smart Device</span>
           </button>
 
           {/* SAVE VERSION BUTTON */}

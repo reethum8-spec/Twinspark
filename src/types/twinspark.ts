@@ -36,6 +36,12 @@ export interface ComponentItem {
   // Datasheet Provenance & Confidence
   confidence: ValueConfidence;
   sourceNote?: string;
+  sourceUrl?: string;
+  minVoltage?: number;
+  maxVoltage?: number;
+  subcategory?: string;
+  tags?: string[];
+  isCustom?: boolean;
 
   // Editable 3D Block Positioning & Dimensions
   transform3D?: ComponentTransform3D;

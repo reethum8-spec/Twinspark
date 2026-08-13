@@ -49,7 +49,7 @@ export default function TimelineDiagram({ spec, onUpdateSpec }: TimelineDiagramP
       id: `state-${Date.now()}`,
       name: 'Custom',
       durationSec: 1.0,
-      activeComponentIds: [spec.controller.id],
+      activeComponentIds: spec.controller ? [spec.controller.id] : [],
       description: 'Custom active state step.'
     };
     const updated = [...spec.states, newState];
